@@ -35,5 +35,5 @@ export const todosSlice = createSlice({
 });
 type RootState = ReturnType<typeof store.getState>
 
-export const selectTodos = (state: RootState) => state.todos.todos
+export const selectTodos = (state: RootState) => state.todosStore.todos
 export const { addTodo, removeTodo } = todosSlice.actions;
