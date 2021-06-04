@@ -10,7 +10,11 @@
     width: 28rem;
   }
   .h-custom1{
-    height:32rem;
+    height:34rem;
+  }
+
+  .w-45{
+    width: 45%;
   }
 }
 
