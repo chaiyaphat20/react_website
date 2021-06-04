@@ -1,9 +1,10 @@
 
 import Login from './pages/Login/Login'
+import Todos from './pages/detail/Todos'
 function Routes() {
   return (
     <div>
-      <Login />
+      <Todos />
     </div>
   )
 }
