@@ -7,16 +7,9 @@ import { useHistory } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as yup from 'yup'
+import { IFormInputs } from './type'
 
-interface IFormInputs {
-  username: string
-  firstname: string
-  lastname: string
-  cvcode: string
-  email: string
-  password: string
-  confirmPassword: string
-}
+
 
 const override = css`
   display: block;
@@ -47,7 +40,7 @@ function Register() {
     resolver: yupResolver(schema),
   })
   const onSubmit = async (data: IFormInputs) => {
-    const url = 'http://0276a66df5cc.ngrok.io/user/register'
+    const url = 'http://cbf82be45577.ngrok.io/user/register'
     const res = await axios.post(
       url,
       {
@@ -56,7 +49,7 @@ function Register() {
         FIRST_NAME: 'data.firstname',
         LAST_NAME: 'data.lastname',
         TITLE: 'Mr',
-        EMAIL_ADDRESS: 'email7@mail.com',
+        EMAIL_ADDRESS: 'emaild55d@mail.com',
         CV_CODE: 'data',
         STATUS: 0,
         EFFECTIVE_DATE: '10-MAR-20',
@@ -65,7 +58,6 @@ function Register() {
       },
       { headers: { 'Access-Control-Allow-Origin': '*' } }
     )
-    console.log(res)
   }
 
   const notify = () => {
