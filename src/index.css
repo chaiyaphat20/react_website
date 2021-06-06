@@ -23,8 +23,28 @@
     height:34rem;
   }
 
-  .h-custom2{
-    height:80%;
+  .h-custom80{
+    height:85%;
+  }
+  .h-custom20{
+    height:15%;
+  }
+
+  /* result */
+  .h_result1{
+    height:10%;
+  }
+  .h_result2{
+    height:15%;
+  }
+  .h_result3{
+    height:10%;
+  }
+  .h_result3{
+    height:75%;
+  }
+  .h_result4{
+    height:85%;
   }
 
   .w-custom1{

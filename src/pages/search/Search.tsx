@@ -1,12 +1,14 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 function Search() {
+  const history = useHistory()
   return (
     <div className="flex items-center justify-center h-screen md:flex-col ">
-      <div className="justify-between hidden mb-2 bg-transparent lg:px-10 w-custom1 md:flex">
+      <div className="justify-between hidden pb-3 bg-transparentlg:px-10 w-custom1 md:flex h-custom20 md:items-end">
         <h1 className="text-white md:text-xl font-Prompt">Welcome Chaiyaphat supharak</h1>
         <h1 className="text-white md:text-2xl md:font-bold">QSOFTTRACK && TRAC</h1>
       </div>
-      <div className="flex flex-col items-center justify-start md:justify-start md:items-center bg-gray-50 w-custom1 h-custom2 rounded-xl">
+      <div className="flex flex-col items-center justify-start rounded-t-xl md:justify-start md:items-center bg-gray-50 w-custom1 h-custom80 ">
         <div className="w-1 h-7" />
         <h1 className="text-4xl text-center md:hidden text-sepia-800">QSoft Tracking</h1>
         <div className="h-7" />
@@ -27,7 +29,7 @@ function Search() {
           </FormControl>
           <div className="h-7" />
           <TextField placeholder="TRACKING ID" InputLabelProps={{ shrink: false }} className="w-full " id="outlined-multiline-static" multiline rows={8} variant="outlined" />
-          <button className="self-end w-40 px-4 py-2 font-bold text-white rounded mt-7 bg-sepia-500 hover:bg-sepia-700 focus:outline-none focus:shadow-outline" type="submit">
+          <button onClick={()=>history.push('/results')} className="self-end w-40 px-4 py-2 font-bold text-white rounded mt-7 bg-sepia-500 hover:bg-sepia-700 focus:outline-none focus:shadow-outline" type="submit">
             Search
           </button>
         </div>
