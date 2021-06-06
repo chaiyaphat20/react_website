@@ -50,7 +50,7 @@ function Login() {
 
   const handleRegister = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    history.replace('/register')
+    history.push('/register')
   }
 
   return (
@@ -83,9 +83,9 @@ function Login() {
               <input type="checkbox" className="w-5 h-5 text-gray-600 form-checkbox" defaultChecked />
               <span className="ml-2 text-gray-700">Stay Connected</span>
             </label>
-            <a className="inline-block text-sm font-bold text-blue-500 align-baseline hover:text-blue-800" href="/forgot-password">
+            <h1 className="inline-block text-sm font-bold text-blue-500 align-baseline cursor-pointer hover:text-blue-800" onClick={()=>history.push('/search')}>
               Forgot Password?
-            </a>
+            </h1>
           </div>
           <div className="flex flex-col items-center mb-8">
             <button className="w-full px-4 py-2 font-bold text-white rounded bg-sepia-500 hover:bg-sepia-700 focus:outline-none focus:shadow-outline" type="submit">

@@ -1,5 +1,15 @@
+/* thai */
+@font-face {
+  font-family: 'Prompt';
+  src: url(./fonts/Prompt-Regular.ttf) format('woff2');
+}
+
+
 @tailwind base;
 @tailwind components;
+
+
+
 @tailwind utilities;
 
 @layer utilities {
@@ -13,13 +23,32 @@
     height:34rem;
   }
 
+  .h-custom2{
+    height:80%;
+  }
+
+  .w-custom1{
+    width: 85%;
+  }
+
   .w-45{
     width: 45%;
   }
 }
 
+
+
 @layer base{
   body{
-    @apply bg-[#a86b4c]
+    @apply bg-[#a86b4c] font-Prompt
+  }
+  h1,h2,h3,h4,h5,h6{
+    @apply font-Prompt
+  }
+  p{
+    @apply font-Prompt
+  }
+  a{
+    @apply font-Prompt
   }
 }

@@ -4,6 +4,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        Prompt: ['Prompt'],
+      },
       colors: {
         sepia: {
           '50':  '#fcfbf8',

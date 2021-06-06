@@ -3,6 +3,7 @@ import Login from './pages/Login/Login'
 import Register from './pages/register/Register'
 import Todos from './pages/detail/Todos'
 import ForgotPassword from '../src/pages/forgot_password/ForgotPassword'
+import Search from '../src/pages/search/Search'
 function Routes() {
   return (
     <Router>
@@ -18,6 +19,9 @@ function Routes() {
         </Route>
         <Route path="/todo">
           <Todos />
+        </Route>
+        <Route path="/search">
+          <Search />
         </Route>
       </Switch>
     </Router>
