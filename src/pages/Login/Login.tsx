@@ -44,7 +44,7 @@ function Login() {
     if (!getDataFromApi.status) {
       notify()
     }else{
-      history.push('/todo')
+      history.push('/search')
     }
   }
 

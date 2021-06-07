@@ -7,9 +7,8 @@ import { useHistory } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as yup from 'yup'
+import { config } from '../../shared/config'
 import { IFormInputs } from './type'
-
-
 
 const override = css`
   display: block;
@@ -30,8 +29,9 @@ const schema = yup.object().shape({
 function Register() {
   let [loading, setLoading] = useState(true)
   let [color, setColor] = useState('#d38258')
-  let [selectedTitle, setSelectedTitle] = useState(1)
+  let [selectedTitle, setSelectedTitle] = useState('Mr')
   const history = useHistory()
+  
   const {
     register,
     handleSubmit,
@@ -40,28 +40,42 @@ function Register() {
     resolver: yupResolver(schema),
   })
   const onSubmit = async (data: IFormInputs) => {
-    const url = 'http://cbf82be45577.ngrok.io/user/register'
-    const res = await axios.post(
-      url,
-      {
-        USER_NAME: 'data.username',
-        PASSWORD: 'data.password',
-        FIRST_NAME: 'data.firstname',
-        LAST_NAME: 'data.lastname',
-        TITLE: 'Mr',
-        EMAIL_ADDRESS: 'emaild55d@mail.com',
-        CV_CODE: 'data',
-        STATUS: 0,
-        EFFECTIVE_DATE: '10-MAR-20',
-        ACCESS_DATE: '10-MAR-20',
-        CREATE_DATE: '10-MAR-20',
-      },
-      { headers: { 'Access-Control-Allow-Origin': '*' } }
-    )
+      const url = `${config.endpointURL}/user/register`
+      console.log('login')
+      const res = await axios.post(
+        url,
+        {
+          USER_NAME: data.username,
+          PASSWORD: data.password,
+          FIRST_NAME: data.firstname,
+          LAST_NAME: data.lastname,
+          TITLE: selectedTitle,
+          EMAIL_ADDRESS: data.email,
+          CV_CODE: data.cvcode,
+          STATUS: 0,
+          EFFECTIVE_DATE: '10-MAR-20',
+          ACCESS_DATE: '11-MAR-20',
+          CREATE_DATE: '12-MAR-20',
+        },
+        { headers:{"Content-Type" : "application/json"} }
+      ).then(r=>r).catch(e=>e.response)
+      console.log(res)
+      if(res?.status ===500){
+        notify(res.data.err.message)
+      }
+      if(res?.status === 200){
+        history.push('/login')
+      }
+      
   }
 
-  const notify = () => {
-    toast.error('Login Fail ไม่พบบัญชีนี้', {
+  const notify = (msg:string) => {
+    toast.error(msg, {
+      position: toast.POSITION.TOP_CENTER,
+    })
+  }
+  const notifySuccess = () => {
+    toast.success('Login Success', {
       position: toast.POSITION.TOP_CENTER,
     })
   }
@@ -72,8 +86,8 @@ function Register() {
     history.replace('/register')
   }
 
-  const isSelectedRadio = (id: number): boolean => {
-    if (id === selectedTitle) {
+  const isSelectedRadio = (title: string): boolean => {
+    if (title === selectedTitle) {
       return true
     } else {
       return false
@@ -103,15 +117,15 @@ function Register() {
           </div>
           <div className="flex flex-row mb-3">
             <label className="inline-flex items-center ">
-              <input type="radio" className="w-5 h-5 text-gray-600 form-radio" checked={isSelectedRadio(1)} onChange={() => setSelectedTitle(1)} />
+              <input type="radio" className="w-5 h-5 text-gray-600 form-radio" checked={isSelectedRadio('Mr')} onChange={() => setSelectedTitle('Mr')} />
               <span className="ml-2 text-gray-700">Mr</span>
             </label>
             <label className="inline-flex items-center ml-2">
-              <input type="radio" className="w-5 h-5 text-red-600 form-radio" checked={isSelectedRadio(2)} onChange={() => setSelectedTitle(2)} />
+              <input type="radio" className="w-5 h-5 text-red-600 form-radio" checked={isSelectedRadio('Miss')} onChange={() => setSelectedTitle('Miss')} />
               <span className="ml-2 text-gray-700">Miss</span>
             </label>
             <label className="inline-flex items-center ml-2">
-              <input type="radio" className="w-5 h-5 text-orange-600 form-radio" checked={isSelectedRadio(3)} onChange={() => setSelectedTitle(3)} />
+              <input type="radio" className="w-5 h-5 text-orange-600 form-radio" checked={isSelectedRadio('Mrs')} onChange={() => setSelectedTitle('Mrs')} />
               <span className="ml-2 text-gray-700">Mrs</span>
             </label>
           </div>
@@ -176,7 +190,7 @@ function Register() {
             </button>
           </div>
         </form>
-        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       </div>
     </div>
   )

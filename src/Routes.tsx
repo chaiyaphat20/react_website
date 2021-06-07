@@ -12,6 +12,9 @@ function Routes() {
         <Route path="/" exact>
           <Login />
         </Route>
+        <Route path="/login" exact>
+          <Login />
+        </Route>
         <Route path="/register">
           <Register />
         </Route>
